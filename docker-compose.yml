@@ -1,0 +1,22 @@
+version: "2.14"
+services:
+  front:
+    image: opusfront
+    container_name: opus_front
+    build:
+      context: ./opusappgallery
+    depends_on:
+      - back
+    volumes:
+      - ./opusappgallery:/app
+    ports:
+      - 3001:3000
+  back:
+    image: opusback
+    container_name: opus_back
+    build:
+      context: ./opusserver
+    volumes:
+      - ./opusserver:/app
+    ports:
+      - 8081:8081
